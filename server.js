@@ -8,6 +8,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.text());
 
+app.use("/",(req,res)=>res.send(" you are welcome! first entry Point POST: https://textjustifytest.herokuapp.com/api/token"))
 app.use("/api",router)
 
 
