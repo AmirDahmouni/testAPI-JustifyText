@@ -46,10 +46,17 @@ router.post("/justify",(req,res,next)=>{req.rateLimitTokens=rateLimitTokens; nex
 
 router.post("/token",(req,res)=>{
     if(emails.indexOf(req.body.email)==-1) return res.status(404).send({message:"email user not found"})
-    //generate a token
+    
+    //if the user is already connected and try to login with a new token
+    let index=rateLimitTokens.findIndex(c=>c.email==req.body.email)
+    if(index!=-1)        
+       return res.status(200).header("x-auth-token", rateLimitTokens[index].token).send({email:req.body.email})
+     //generate a token
     const token=jwt.sign({email:req.body.email},process.env.JWT);
     //add the token 
-    rateLimitTokens[token]={ words: 0, date: new Date() };
+    rateLimitTokens.push({ words: 0, date: new Date(),token:token,email:req.body.email });
+
+    //console.log(rateLimitTokens)
     //return the token to the header and the email to the body
     return res.status(200).header("x-auth-token", token).send({email:req.body.email});
 })

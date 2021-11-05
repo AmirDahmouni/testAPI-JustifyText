@@ -3,7 +3,7 @@ function checkLimit(req,res,next) {
     
     
     //recover rateLimit using token
-    var rateLimit = req.rateLimitTokens[req.token];
+    var rateLimit = req.rateLimitTokens[req.rateLimitTokens.findIndex(user=>user.token==req.token)];
 
     //if the token doesn't exist in rateLimitsToken return  
     if (!rateLimit || !rateLimit.date) return res.status(403).send("forbidden")
@@ -33,11 +33,15 @@ function checkLimit(req,res,next) {
     //re assign the num words to the user token
     rateLimit.words +=numWords;
 
-    //console.log(req.rateLimitTokens)
+    //before updating
+    //console.log(req.rateLimitTokens) 
 
     //update rateLimitTokens
-    req.rateLimitTokens[req.token] = rateLimit;
-
+   
+    req.rateLimitTokens[req.rateLimitTokens.findIndex(user=>user.token==req.token)] = rateLimit;
+  
+    //after updating 
+    //console.log(req.rateLimitTokens) 
     //pass to next function
     next()
 }
