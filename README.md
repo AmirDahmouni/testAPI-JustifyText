@@ -1,7 +1,6 @@
 # testAPI-JustifyText
 
-
-/*************************Documentation*************************************/  
+  
  API deployed on the url https://textjustifytest.herokuapp.com  
 
 //singin  
