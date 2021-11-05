@@ -5,7 +5,7 @@ const Auth=require("./middlewares/auth")
 const checkLimit=require("./middlewares/checkLimit")
 const space=require("./utils/space")
 const rateLimitTokens=[];
-const emails=["admin_123@gmail.com","admin_12345@hotmail.fr"]
+const emails=["admin_123@gmail.com","admin_12345@hotmail.fr","foo@bar.com"]
 
 
 
@@ -40,7 +40,6 @@ router.post("/justify",(req,res,next)=>{req.rateLimitTokens=rateLimitTokens; nex
                 }
             }
         }
-        //newtext=space(newtext)
         return res.status(200).type("text/plain").send(space(newtext));
     
 })
