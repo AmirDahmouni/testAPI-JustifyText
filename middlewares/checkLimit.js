@@ -28,7 +28,7 @@ function checkLimit(req,res,next) {
     numWords += 1;
 
     //if the user try to justify the text with >80000 words based on to two steps 
-    if (rateLimit.words+numWords>=80000 || numWords >= 80000)  return res.status(402).json({ message: '402 Payment Required.' });
+    if (rateLimit.words+numWords>=80000 || numWords >= 80000)  return res.status(402).json({ message: 'Payment required' });
     
     //re assign the num words to the user token
     rateLimit.words +=numWords;
