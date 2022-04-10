@@ -7,7 +7,7 @@
 1-POST: https://textjustifytest.herokuapp.com/api/token  
   as request we send a json data { "email":useremail }   
   // only "admin_123@gmail.com","admin_12345@hotmail.fr","foo@bar.com" can be accepted for testing    
-  //if the user try to recoonect with the same email we will not regenerate a new token but we send his old one  
+  //if the user try to re-connect with the same email we will not regenerate a new token but we send his old one  
   as result he receive the token in the header (key :X-Auth-Token) and the email in the body   
   
 //justifying text    
